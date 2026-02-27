@@ -1,0 +1,37 @@
+LeetCode-41
+# First Missing Positive
+
+## Problem
+Find the smallest missing positive integer in an unsorted array.
+
+## Approach
+- Place each number `x` at index `x-1`
+- Use in-place swapping (Cyclic Sort concept)
+- Scan to find first mismatch
+
+## Time Complexity
+O(n)
+
+## Space Complexity
+O(1)
+Code
+# Note : -
+# - Modify the function or parameters if needed.
+# - Signatures function may vary, adjust parameters if required.
+from typing import List
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n=len(nums)
+        for i in range(n):
+            while 1<=nums[i]<=n and nums[nums[i]-1]!=nums[i]:
+                correct_index=nums[i]-1
+                nums[i],nums[correct_index]=nums[correct_index],nums[i]
+        for i in range(n):
+            if(nums[i]!=i+1):
+                return i+1
+        return n+1
+
+       
+
+        
+        
